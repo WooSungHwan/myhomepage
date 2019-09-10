@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>코딩하는 흑구의 기술전시관</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<style>
+#cursor{
+  width:2px;
+  height:40px;
+  border:1px solid black;
+  background-color:black;
+  -webkit-animation:blink .35s ease-in-out infinite alternate;
+  -moz-animation:blink .35s ease-in-out infinite alternate;
+  animation:blink .35s ease-in-out infinite alternate;
+}
+#text{
+  font-size:30px;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+</style>
+
+<div id="text" style="float:left;">
+
+</div>
+<div id="cursor" style="float:left;"></div>
+<div style="clear:both;"></div>
+<script type="text/javascript">
+var timer = 0;
+
+  var text = document.getElementById("text")
+  var str = 'Developer 우성환의 포트폴리오입니다.';
+  var strArray = str.split("");
+  var count = 0;
+  timer = setInterval(function(){
+    text.append(strArray[count]);
+    count++;
+    if(count == str.length){
+      clearInterval(timer);
+    }
+  },200);
+
+
+</script>
+</html>

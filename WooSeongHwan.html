@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Portfolio - 코딩하는 흑구</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/stylish-portfolio.min.css" rel="stylesheet">
+  <link rel=" shortcut icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
+<style>
+#cursor{
+  width:5px;
+  height:60px;
+  border:1px solid black;
+  background-color:black;
+  -webkit-animation:blink .35s ease-in-out infinite alternate;
+  -moz-animation:blink .35s ease-in-out infinite alternate;
+  animation:blink .35s ease-in-out infinite alternate;
+}
+#text{
+  font-size:60px;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+.bar{
+  width:2px;
+  height:100px;
+  background:black;
+  float:left;
+}
+.bar::after{
+  clear:both;
+}
+</style>
+<script>
+  window.onload = function(){
+    titleText();
+  };
+
+  function titleText(){
+    var timer = 0;
+    var text = document.getElementById("text")
+    var str = 'Developer 우성환(a.k.a. 코딩하는 흑구)의 포트폴리오 페이지입니다.';
+    var strArray = str.split("");
+    var count = 0;
+    timer = setInterval(function(){
+      text.append(strArray[count]);
+      count++;
+      if(count == str.length){
+        clearInterval(timer);
+      }
+    },100);
+  }
+
+</script>
+<body id="page-top">
+
+  <!-- Navigation -->
+  <a class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#page-top">Main</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#about">About Me</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#services">Program</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto" style="background:url("test2.PNG");">
+      <div class="container my-auto" style="margin: 0 auto;">
+        <h1 id="text" class="mb-1" style="display:inline;"></h1>
+        <div id="cursor" style="display:inline-block;"></div>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Me-->
+  <section class="content-section bg-light" id="about">
+    <div class="row text-center" style="vertical-align : middle; float:left;">
+      <div class="col-lg-10 mx-auto">
+        <h2>About Me</h2>
+      </div>
+    </div>
+    <div class="container text-center ">
+      <div class="bar"></div>
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3>끊임없이 도전하는 개발자</h3>
+          <p class="lead mb-5"></p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Program -->
+  <section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+      <div class="content-section-heading">
+        <h3 class="text-secondary mb-0">My Interests</h3>
+        <h2 class="mb-5">나의 관심사</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-pencil"></i>
+          </span>
+          <h4>
+            <strong>Filling new content onto my blog</strong>
+          </h4>
+          <p class="text-faded mb-0">블로그는 개인적인 정리공간뿐만 아니라 Web상에서 오픈된 공간이기 때문에 보다 양질의 컨텐츠로 채우고 제공하여 이로움을 공유하고 싶다.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-music-tone"></i>
+          </span>
+          <h4>
+            <strong>Stress Control, 혼코노!</strong>
+          </h4>
+          <p class="text-faded mb-0">스트레스를 받으면 코인노래방에가서 열창하는 편입니다. 롹발라드를 좋아하는 편인데 부르다보면 스트레스가 시원하게 풀립니다!</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-like"></i>
+          </span>
+          <h4>
+            <strong>My Favorite Hobby, Soccer</strong>
+          </h4>
+          <p class="text-faded mb-0">군복무시절 다쳤던 몸상태 때문에 그간 즐기지 못했던 My Favorite Sports. 운동으로 몸상태를 살려 다시 뛰고 싶은 마음이 간절한 상태이다.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-screen-desktop"></i>
+          </span>
+          <h4>
+            <strong>Service</strong>
+          </h4>
+          <p class="text-faded mb-0">3ms 프로젝트를 aws를 이용해서 서비스를 경험하고자하는 계획이 있습니다. 현재 AWS RDS를 이용하여 개발 DB를 공유하여 개발중이고 EC2 혹은 S3를 염두하고 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callout -->
+  <section class="callout">
+    <div class="container text-center">
+      <h2 class="mx-auto mb-5">Welcome to <em>your</em> next website!</h2>
+      <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/template-overviews/stylish-portfolio/">Download Now!</a>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="content-section" id="portfolio">
+    <div class="container">
+      <div class="content-section-heading text-center">
+        <h3 class="text-secondary mb-0">Portfolio</h3>
+        <h2 class="mb-5">Recent Projects</h2>
+      </div>
+      <!-- 골라방 -->
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <a class="portfolio-item" target="_blank" href="https://github.com/WooSungHwan/GolaBang">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>골라방</h2>
+                <p class="mb-0">부동산, 자취방 중고거래 서비스</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="golabang_main.PNG" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="#">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Ice Cream</h2>
+                <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="img/portfolio-2.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="#">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Strawberries</h2>
+                <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="img/portfolio-3.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="#">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Workspace</h2>
+                <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="img/portfolio-4.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="content-section bg-info text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">자격증</h2>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <h3>CONTACT ME</h3>
+      <p>blog : <a href="http://sas-study.tistory.com" target="_blank">http://sas-study.tistory.com</a></p>
+      <p>github : <a href="https://github.com/WooSungHwan" target="_blank">https://github.com/WooSungHwan</a></p>
+      <p>phone call : 010-3719-5510</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/stylish-portfolio.min.js"></script>
+
+</body>
+
+</html>
