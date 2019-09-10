@@ -50,19 +50,17 @@
     0% {opacity:0;}
     100% {opacity:1;}
 }
-.bar{
-  width:2px;
-  height:100px;
-  background:black;
-  float:left;
+.lead{
+  visibility: hidden;
 }
-.bar::after{
-  clear:both;
+.developer:hover{
+  cursor:pointer;
 }
 </style>
 <script>
   window.onload = function(){
     titleText();
+    developerSetting();
   };
 
   function titleText(){
@@ -78,6 +76,17 @@
         clearInterval(timer);
       }
     },100);
+  }
+
+  function developerSetting(){
+    //이 클래스를 가진 배열 -> 클릭하면 밑에 뜨도록
+    var developer = document.getElementsByClassName("developer");
+    for(var i =0; i<developer.length; i++){
+        developer[i].onclick = function(){
+          event.srcElement.nextElementSibling.style.visibility="visible";
+          event.srcElement.children[0].style.color="blue";
+      }
+    }
   }
 
 </script>
@@ -112,7 +121,7 @@
 
   <!-- Header -->
   <header class="masthead d-flex">
-    <div class="container text-center my-auto" style="background:url("test2.PNG");">
+    <div class="container text-center my-auto">
       <div class="container my-auto" style="margin: 0 auto;">
         <h1 id="text" class="mb-1" style="display:inline;"></h1>
         <div id="cursor" style="display:inline-block;"></div>
@@ -123,18 +132,19 @@
 
   <!-- About Me-->
   <section class="content-section bg-light" id="about">
-    <div class="row text-center" style="vertical-align : middle; float:left;">
-      <div class="col-lg-10 mx-auto">
-        <h2>About Me</h2>
-      </div>
+    <div style="width: 400px; margin:0 auto; margin-bottom:30px;">
+        <h2>당신은 어떤 개발자인가요?</h2>
     </div>
     <div class="container text-center ">
-      <div class="bar"></div>
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <h3>끊임없이 도전하는 개발자</h3>
-          <p class="lead mb-5"></p>
-        </div>
+          <h6 style="color:#A9A9A9;">추후 이공간은 fade 효과 줄 예정</h6>
+          <h4 class="developer">비전이 있는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
+          <p class="lead mb-5">매순간마다 새로운 기술이 넘쳐나는 IT업계에서 새로움을 갈구하며 리드하며 혁신적인 서비스를 제공하는데 일조하고 싶은 개발자가 되고싶습니다.</p>
+          <h4 class="developer">끊임없이 도전하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
+          <p class="lead mb-5">Slow And Steady, my motto! 천천히 그리 꾸준히! 느릴지도 모르지만, 꾸준하게 끊임없이 성장하고 도전할 수 있는 능력이 있는 개발자가 되고싶습니다.</p>
+          <h4 class="developer"></h4>
+      </div>
       </div>
     </div>
 
@@ -153,7 +163,7 @@
           <h4>
             <strong>Filling new content onto my blog</strong>
           </h4>
-          <p class="text-faded mb-0">블로그는 개인적인 정리공간뿐만 아니라 Web상에서 오픈된 공간이기 때문에 보다 양질의 컨텐츠로 채우고 제공하여 이로움을 공유하고 싶다.</p>
+          <p class="text-faded mb-0">블로그는 개인적인 정리공간뿐만 아니라 Web상에서 오픈된 공간이기 때문에 보다 양질의 컨텐츠로 채우고 제공하여 이로움을 공유하고 싶다. 블로그는 아래 contact에 기재되어 있다.</p>
         </div>
         <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
           <span class="service-icon rounded-circle mx-auto mb-3">
@@ -211,7 +221,7 @@
                 <p class="mb-0">부동산, 자취방 중고거래 서비스</p>
               </span>
             </span>
-            <img class="img-fluid" src="golabang_main.PNG" alt="">
+            <img class="img-fluid" src="golabang_main.png" alt="">
           </a>
         </div>
         <div class="col-lg-6">
