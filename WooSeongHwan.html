@@ -51,22 +51,24 @@
     100% {opacity:1;}
 }
 .lead{
-  visibility: hidden;
+  opacity: 0;
+  transition: .5s;
 }
-.developer:hover{
+.click:hover{
   cursor:pointer;
 }
 </style>
 <script>
+var toggleClick = false;
   window.onload = function(){
     titleText();
-    developerSetting();
+    developerSetting(toggleClick);
   };
 
   function titleText(){
     var timer = 0;
     var text = document.getElementById("text")
-    var str = 'Developer 우성환(a.k.a. 코딩하는 흑구)의 포트폴리오 페이지입니다.';
+    var str = 'Developer 우성환(a.k.a. 코딩하는 흑구)의 포트폴리오입니다.';
     var strArray = str.split("");
     var count = 0;
     timer = setInterval(function(){
@@ -78,14 +80,21 @@
     },100);
   }
 
-  function developerSetting(){
+  function developerSetting(toggleClick){
     //이 클래스를 가진 배열 -> 클릭하면 밑에 뜨도록
     var developer = document.getElementsByClassName("developer");
     for(var i =0; i<developer.length; i++){
-        developer[i].onclick = function(){
-          event.srcElement.nextElementSibling.style.visibility="visible";
-          event.srcElement.children[0].style.color="blue";
-      }
+        developer[i].children[0].addEventListener("click",function(){
+          if(!toggleClick){
+            toggleClick=true;
+            event.srcElement.parentNode.nextElementSibling.style.opacity=1;
+            this.style.color="blue";
+          }else{
+            toggleClick=false;
+            event.srcElement.parentNode.nextElementSibling.style.opacity=0
+            this.style.color="#A9A9A9";
+          }
+        },false);
     }
   }
 
@@ -138,13 +147,15 @@
     <div class="container text-center ">
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <h6 style="color:#A9A9A9;">추후 이공간은 fade 효과 줄 예정</h6>
           <h4 class="developer">비전이 있는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
-          <p class="lead mb-5">매순간마다 새로운 기술이 넘쳐나는 IT업계에서 새로움을 갈구하며 리드하며 혁신적인 서비스를 제공하는데 일조하고 싶은 개발자가 되고싶습니다.</p>
+          <p class="lead mb-5">온고지신! 매순간마다 새로운 기술이 넘쳐나는 IT업계에서 새로움을 갈구하고 혁신적인 서비스를 제공하는데 일조하는 개발자가 되고싶습니다.</p>
           <h4 class="developer">끊임없이 도전하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
-          <p class="lead mb-5">Slow And Steady, my motto! 천천히 그리 꾸준히! 느릴지도 모르지만, 꾸준하게 끊임없이 성장하고 도전할 수 있는 능력이 있는 개발자가 되고싶습니다.</p>
-          <h4 class="developer"></h4>
-      </div>
+          <p class="lead mb-5">Slow And Steady, my motto! 천천히 그리 꾸준히! 느릴지도 모르지만, 꾸준하게 끊임없이 성장하고 도전할 수 있는 능력이 있는 개발자입니다.</p>
+          <h4 class="developer">공유하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
+          <p class="lead mb-5">공유의 힘을 믿습니다.! 개발지식을 공유하여 저와 같이 일하는 팀원들의 공유내용을 공유받고 싶고 제가 공유할 수 있는 내용을 팀원들과 공유하는 개발자입니다.</p>
+          <h4 class="developer">고민하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
+          <p class="lead mb-5">기능구현만 하면 끝이 아닌!! 어떻게 하면 좀더 경제적인 로직이 나오고 어떻게 하면 좀더 좋은 성능을 보일 코드를 고민하는 개발자입니다.</p>
+        </div>
       </div>
     </div>
 
@@ -170,7 +181,7 @@
             <i class="icon-music-tone"></i>
           </span>
           <h4>
-            <strong>Stress Control, 혼코노!</strong>
+            <strong>Stress Control<br> 혼코노!</strong>
           </h4>
           <p class="text-faded mb-0">스트레스를 받으면 코인노래방에가서 열창하는 편입니다. 롹발라드를 좋아하는 편인데 부르다보면 스트레스가 시원하게 풀립니다!</p>
         </div>
@@ -179,7 +190,7 @@
             <i class="icon-like"></i>
           </span>
           <h4>
-            <strong>My Favorite Hobby, Soccer</strong>
+            <strong>My Favorite Hobby<br>Soccer</strong>
           </h4>
           <p class="text-faded mb-0">군복무시절 다쳤던 몸상태 때문에 그간 즐기지 못했던 My Favorite Sports. 운동으로 몸상태를 살려 다시 뛰고 싶은 마음이 간절한 상태이다.</p>
         </div>
@@ -188,7 +199,7 @@
             <i class="icon-screen-desktop"></i>
           </span>
           <h4>
-            <strong>Service</strong>
+            <strong>My Service<br>Experience</strong>
           </h4>
           <p class="text-faded mb-0">3ms 프로젝트를 aws를 이용해서 서비스를 경험하고자하는 계획이 있습니다. 현재 AWS RDS를 이용하여 개발 DB를 공유하여 개발중이고 EC2 혹은 S3를 염두하고 있습니다.</p>
         </div>
@@ -200,6 +211,7 @@
   <section class="callout">
     <div class="container text-center">
       <h2 class="mx-auto mb-5">Welcome to <em>your</em> next website!</h2>
+
       <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/template-overviews/stylish-portfolio/">Download Now!</a>
     </div>
   </section>
@@ -271,14 +283,25 @@
 
   <!-- Footer -->
   <footer class="footer text-center">
-    <div class="container">
-      <h3>CONTACT ME</h3>
-      <p>blog : <a href="http://sas-study.tistory.com" target="_blank">http://sas-study.tistory.com</a></p>
-      <p>github : <a href="https://github.com/WooSungHwan" target="_blank">https://github.com/WooSungHwan</a></p>
-      <p>phone call : 010-3719-5510</p>
-    </div>
-  </footer>
-
+      <div class="container">
+        <ul class="list-inline mb-5">
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="http://sas-study.tistory.com" target="_blank">
+              <i class="icon-pencil"></i>
+            </a>
+            <p>블로그</p>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="https://github.com/WooSungHwan" target="_blank">
+              <i class="icon-social-github"></i>
+            </a>
+            <p>깃허브</p>
+          </li>
+        </ul>
+        <p>phone call : 010-3719-5510</p>
+        <p>email : doqndnffo@gmail.com</p>
+      </div>
+    </footer>
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
     <i class="fas fa-angle-up"></i>
