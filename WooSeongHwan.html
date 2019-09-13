@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -15,7 +15,7 @@
 
   <!-- Custom Fonts -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
   <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
   <!-- Custom CSS -->
@@ -98,10 +98,16 @@
   transition: all 1s ease-in-out;
   transform: scale(1.3,1.3);
 }
+#btnSkill{
+  background-color:#A9A9A9;
+  width:100px;
+  margin:0 auto;
+
+}
 #btnSkill:hover{
   cursor: pointer;
-  transition: all .5s ease-in-out;
   transform: scale(1.5,1.5);
+  transition: transform:scale 0.1s ease-in-out;
 }
 #skillBack{
   height:380px;
@@ -110,15 +116,52 @@
 #skillBack h4{
   text-shadow: 0 0 2px black;
 }
+#btnSkill{
+  position:relative;
+  transition: all 2s ease-in-out;
+}
+/* #btnSkill:hover{
+  transition: all 1s ease-in-out;
+
+} */
 .skill{
   display: inline-block;
   margin:0 auto;
 }
+.skill:hover .skill_label{
+  visibility: visible;
+}
+.skill_label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  opacity: 0.8;
+  font-weight: 400;
+  font-size:1rem;
+  color:rgb(255,255,255);
+  visibility: hidden;
+  background: rgb(0,0,0);
+  border-radius:20%;
+  padding:10px;
+  transition: all 0.05s ease-in-out;
+}
+
+#skillBody{
+  visibility: hidden;
+}
+/* .skill:hover{
+  background: #A9A9A9;
+  opacity: 0.5;
+} */
 .language, .database, .frameworkLibrary, .version, .ect{
   max-width:100%;
 }
+
 </style>
 <script>
+
   var aboutDivWidth;
   window.onload = function(){
     timedelay();
@@ -126,7 +169,7 @@
     developerSetting();
     scrollEvent();
 
-    //내용물들 이벤트
+    //skills들 이벤트
     function isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
@@ -134,14 +177,54 @@
     var skillBtn = document.getElementById("btnSkill");
     var skillBack = document.getElementById("skillBack");
     var skillBody = document.getElementById("skillBody");
+    skillBody.style.visibility = "hidden";
+    var isclicktoggle = true;
     skillBtn.addEventListener("click",function(){
-      if(isMobile()){
-        skillBack.setAttribute("style","height:1750px;background-color:#A9A9A9; overflow:hidden;");
-      }else{
-        skillBack.setAttribute("style","height:1230px;background-color:#A9A9A9; overflow:hidden;");
+      var mobileHeight = 1750;
+      var webHeight = 1230;
+      // var skillBtnPreStyle = this.getAttribute("style");
+      var skillspace = document.getElementById("skillspace");
+      //위에서 클릭
+      if(isclicktoggle){ //펼친상태
+        isclicktoggle = false;
+        if(isMobile()){
+          this.setAttribute("style"," transition: transform:translate 2s ease-in-out; transform:translate(0px, "+(mobileHeight-280)+"px);");
+          skillBack.setAttribute("style","height:"+mobileHeight+"px;background-color:#A9A9A9; overflow:hidden;");
+        }else{
+          this.setAttribute("style","transition: transform:translate 2s ease-in-out; transform:translate(0px, "+(webHeight-280)+"px);");
+          skillBack.setAttribute("style","height:"+webHeight+"px;background-color:#A9A9A9; overflow:hidden;");
+        }//skills들 이벤트
+        skillspace.style.height=0;//높이조절용
+      }else{ //접힌상태
+        isclicktoggle = true;
+        if(isMobile()){
+          this.setAttribute("style"," transition: transform:translate 2s ease-in-out; transform:translate(0px, 0px);");
+          skillBack.setAttribute("style","background-color:white; overflow:hidden;");
+        }else{
+          this.setAttribute("style","transition: transform:translate 2s ease-in-out; transform:translate(0px, 0px);");
+          skillBack.setAttribute("style","background-color:white; overflow:hidden;");
+        }//skills들 이벤트
+        skillspace.style.height="50px";//높이조절용
       }
+
+      //호버 이벤트 넣기
+      // var skill = document.getElementsByClassName("skill");
+      // for(var s = 0; s<skill.length; s++){
+      //   var preStyle ;
+      //   skill[s].onmouseenter = function(){
+      //     preStyle = event.srcElement.getAttribute("style");
+      //     event.srcElement.setAttribute("style","background-color:#808080;");
+      //   };
+      //   skill[s].onmouseout = function(){
+      //     event.srcElement.setAttribute("style",preStyle);
+      //
+      //   }
+      // }//호버 이벤트 종료
+
       setTimeout(function(){
         //2초후의 액션
+        skillBody.setAttribute("stlye","visibility:visible; transition:all 1s;")
+        skillBody.style.visibility = "visible";
 
       },2000);
     });
@@ -177,7 +260,6 @@
 
           if(!developToggleArr[i]){
             developToggleArr[i] = true;
-            console.log(event.srcElement.parentNode.nextElementSibling);
             event.srcElement.parentNode.nextElementSibling.style.opacity=1;
             this.style.color="blue";
           }else{
@@ -340,54 +422,54 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   </section>
 
   <!-- Callout -->
-  <section class="content-section text-white text-center bgBlur" style="background-color:#A9A9A9; overflow:hidden;" id="skillBack" >
+  <section class="content-section text-white text-center bgBlur" style="overflow:hidden;" id="skillBack" >
     <div class="content-section-heading" >
-      <h3 class="text-secondary mb-0">My Skills</h3>
-      <h2 class="mb-5">나의 기술들</h2>
+      <h3 class="text-secondary mb-0">My Skill History</h3>
+      <h2 class="mb-5">활용가능 기술모음</h2>
     </div>
-    <div class="container text-center">
-      <div class="thumbnail circle" draggable="true" id="btnSkill"style="margin:0 auto;"></div>
-      <div style="height:50px;"></div>
+    <div class="thumbnail circle" id="btnSkill"></div>
+    <div id="skillspace" style="height:50px;"></div>
+    <div class="container text-center" id="skillBody">
       <h4>Language & Platform</h4>
       <div class="language" style="margin:0 auto;">
-        <div class="thumbnail round skill" style="background-image:url('skills/htmlcss.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/Java.png');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/javascript.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/arduino.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/jsp.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/Android.jpg');"></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/htmlcss.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Java.png');"><div class="skill_label">Expert</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/javascript.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/arduino.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jsp.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Android.jpg');"><div class="skill_label">Plain</div></div>
       </div><div style="height:20px;"></div>
       <div class="database" style="margin:0 auto;">
         <h4>Database</h4>
-        <div class="thumbnail round skill" style="background-image:url('skills/postgresql.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/oracle.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/sqlite.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/mysql.jpeg');"></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/postgresql.jpeg');"><div class="skill_label">Expert</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/oracle.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/sqlite.jpeg');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/mysql.jpeg');"><div class="skill_label">Plain</div></div>
       </div><div style="height:20px;"></div>
       <!-- <div style="both:clear;"></div> -->
       <div class="frameworkLibrary" style="margin:0 auto;">
         <h4>Framework & Library</h4>
-        <div class="thumbnail round skill" style="background-image:url('skills/spring.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/jquery.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/mybatis.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/Bootstrap.jpg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/Material.png');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/jqgrid.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/vue.jpeg');"></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/spring.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jquery.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/mybatis.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Bootstrap.jpg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Material.png');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jqgrid.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/vue.jpeg');"><div class="skill_label">Basic</div></div>
       </div><div style="height:20px;"></div>
       <!-- <div style="both:clear;"></div> -->
       <div class="version" style="margin:0 auto;">
         <h4>Version Control</h4>
-        <div class="thumbnail round skill" style="background-image:url('skills/git.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/svn.png');"></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/git.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/SVN.png');"><div class="skill_label">Intermediate</div></div>
       </div><div style="height:20px;"></div>
       <!-- <div style="both:clear;"></div> -->
       <div class="ect" style="margin:0 auto;">
         <h4>ECT</h4>
-        <div class="thumbnail round skill" style="background-image:url('skills/ozreport.jpeg');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/AmazonAWS.png');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/CKEditor.png');"></div>
-        <div class="thumbnail round skill" style="background-image:url('skills/highchart.jpeg');"></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/ozreport.jpeg');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/AmazonAWS.png');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/CKEditor.png');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/highchart.jpeg');"><div class="skill_label">Plain</div></div>
       </div>
       <!-- <div style="both:clear;"></div> -->
   </section>
@@ -484,7 +566,7 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
     <i class="fas fa-angle-up"></i>
   </a>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="vendor/jquery/jquery.slim.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
