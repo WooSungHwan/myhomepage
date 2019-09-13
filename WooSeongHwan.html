@@ -89,7 +89,7 @@
   background-position: center center;
 }
 .thumbnail.round{
-  border-radius: 10%;
+  border-radius: 20%;
 }
 .thumbnail.circle{
   border-radius: 100%;
@@ -104,29 +104,54 @@
   transform: scale(1.5,1.5);
 }
 #skillBack{
-  height:500px;
+  height:380px;
   transition: all 2s ease-in-out;
+}
+#skillBack h4{
+  text-shadow: 0 0 2px black;
+}
+.skill{
+  display: inline-block;
+  margin:0 auto;
+}
+.language, .database, .frameworkLibrary, .version, .ect{
+  max-width:100%;
 }
 </style>
 <script>
   var aboutDivWidth;
   window.onload = function(){
-
+    timedelay();
     titleText();
     developerSetting();
     scrollEvent();
+
+    //내용물들 이벤트
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 
     var skillBtn = document.getElementById("btnSkill");
     var skillBack = document.getElementById("skillBack");
     var skillBody = document.getElementById("skillBody");
     skillBtn.addEventListener("click",function(){
-      skillBack.setAttribute("style","height:1000px;background-color:#A9A9A9");
+      if(isMobile()){
+        skillBack.setAttribute("style","height:1750px;background-color:#A9A9A9; overflow:hidden;");
+      }else{
+        skillBack.setAttribute("style","height:1230px;background-color:#A9A9A9; overflow:hidden;");
+      }
       setTimeout(function(){
+        //2초후의 액션
 
-        skillBody.style.color="red";
       },2000);
     });
   };
+
+  function timedelay(){
+    setTimeout(function(){
+
+    },1000);
+  }
 
   function titleText(){
     var timer = 0;
@@ -135,9 +160,9 @@
     var strArray = str.split("");
     var count = 0;
     timer = setInterval(function(){
-      text.innerText += (strArray[count]);
+      text.append(strArray[count]);
       count++;
-      if(count == str.length){
+      if(count >= str.length){
         clearInterval(timer);
       }
     },100);
@@ -315,17 +340,56 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   </section>
 
   <!-- Callout -->
-  <section class="content-section text-white text-center bgBlur" style="background-color:#A9A9A9;" id="skillBack" >
+  <section class="content-section text-white text-center bgBlur" style="background-color:#A9A9A9; overflow:hidden;" id="skillBack" >
     <div class="content-section-heading" >
       <h3 class="text-secondary mb-0">My Skills</h3>
       <h2 class="mb-5">나의 기술들</h2>
     </div>
     <div class="container text-center">
-      <div class="thumbnail circle" id="btnSkill"style="margin:0 auto;"></div>
-      <div id="skillBody">
-        내용내용
+      <div class="thumbnail circle" draggable="true" id="btnSkill"style="margin:0 auto;"></div>
+      <div style="height:50px;"></div>
+      <h4>Language & Platform</h4>
+      <div class="language" style="margin:0 auto;">
+        <div class="thumbnail round skill" style="background-image:url('skills/htmlcss.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/Java.png');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/javascript.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/arduino.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/jsp.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/Android.jpg');"></div>
+      </div><div style="height:20px;"></div>
+      <div class="database" style="margin:0 auto;">
+        <h4>Database</h4>
+        <div class="thumbnail round skill" style="background-image:url('skills/postgresql.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/oracle.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/sqlite.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/mysql.jpeg');"></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="frameworkLibrary" style="margin:0 auto;">
+        <h4>Framework & Library</h4>
+        <div class="thumbnail round skill" style="background-image:url('skills/spring.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/jquery.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/mybatis.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/Bootstrap.jpg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/Material.png');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/jqgrid.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/vue.jpeg');"></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="version" style="margin:0 auto;">
+        <h4>Version Control</h4>
+        <div class="thumbnail round skill" style="background-image:url('skills/git.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/svn.png');"></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="ect" style="margin:0 auto;">
+        <h4>ECT</h4>
+        <div class="thumbnail round skill" style="background-image:url('skills/ozreport.jpeg');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/AmazonAWS.png');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/CKEditor.png');"></div>
+        <div class="thumbnail round skill" style="background-image:url('skills/highchart.jpeg');"></div>
       </div>
-    </div>
+      <!-- <div style="both:clear;"></div> -->
   </section>
 
   <!-- Portfolio -->
