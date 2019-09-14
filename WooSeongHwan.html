@@ -171,7 +171,7 @@
   letter-spacing: -0.03em;
   display: inline-block;
   color: #fff;
-  background-color: #A9A9A9;
+  background-color: #D9D9D9;
   padding: 0.9em 2.8em 0.9em 2.25em;
 }
 .arrow-up {
@@ -232,8 +232,10 @@
 
   var aboutDivWidth;
   var nowId = 0;
-  var idArr = ['about','interests','skillBack','portfolio','active','contact','page-top'];
+  var idArr = ['about','interests','portfolio','skillBack','active','contact','page-top'];
   window.onload = function(){
+    //새로고침하면 무조건 위로
+    document.getElementById("start").click();
     meEvent()
     timedelay();
     titleText();
@@ -275,10 +277,10 @@
         isclicktoggle = false;
         if(isMobile()){
           this.setAttribute("style"," transition: all 2s ease-in-out; transform:translate(0px, "+(mobileHeight-300)+"px);");
-          skillBack.setAttribute("style","height:"+mobileHeight+"px;background-color:#A9A9A9; overflow:hidden;");
+          skillBack.setAttribute("style","height:"+mobileHeight+"px;background-color:#D9D9D9; overflow:hidden;");
         }else{
           this.setAttribute("style","transition: all 2s ease-in-out; transform:translate(0px, "+(webHeight-300)+"px);");
-          skillBack.setAttribute("style","height:"+webHeight+"px;background-color:#A9A9A9; overflow:hidden;");
+          skillBack.setAttribute("style","height:"+webHeight+"px;background-color:#D9D9D9; overflow:hidden;");
         }//skills들 이벤트
         skillspace.style.height=0;//높이조절용
         skillTitle.style.color="white";
@@ -423,10 +425,10 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
         <a class="js-scroll-trigger" href="#interests">최근 관심사</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#skillBack">활용 기술 스택</a>
+        <a class="js-scroll-trigger" href="#portfolio">최근 프로젝트</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">최근 프로젝트</a>
+        <a class="js-scroll-trigger" href="#skillBack">활용 기술 스택</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="#active">자격증 & 활동</a>
@@ -530,63 +532,6 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
       </div>
     </div>
   </section>
-
-  <!-- Callout -->
-  <section class="content-section text-white text-center bgBlur" style="overflow:hidden;" id="skillBack" >
-    <div class="content-section-heading" >
-      <h3 class="text-secondary mb-0">My Skill History</h3>
-      <h2 id="skillTitle" class="mb-5" style="color:black;">활용가능 기술모음</h2>
-    </div>
-    <!-- <img src="arrow.png" id="btnSkill"></i> -->
-    <div class="btn-right" id="btnSkill">
-		   펼쳐보기<span id="arrow" class="arrow-down"></span>
- 	  </div>
-    <div id="skillspace" style="height:50px;"></div>
-    <div class="container text-center" id="skillBody">
-      <h4>Language & Platform</h4>
-      <div class="language" style="margin:0 auto;">
-        <div class="thumbnail round skill"  style="background-image:url('skills/htmlcss.jpeg');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/Java.png');"><div class="skill_label">Expert</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/javascript.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/arduino.jpeg');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/jsp.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/Android.jpg');"><div class="skill_label">Plain</div></div>
-      </div><div style="height:20px;"></div>
-      <div class="database" style="margin:0 auto;">
-        <h4>Database</h4>
-        <div class="thumbnail round skill"  style="background-image:url('skills/postgresql.jpeg');"><div class="skill_label">Expert</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/oracle.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/sqlite.jpeg');"><div class="skill_label">Basic</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/mysql.jpeg');"><div class="skill_label">Plain</div></div>
-      </div><div style="height:20px;"></div>
-      <!-- <div style="both:clear;"></div> -->
-      <div class="frameworkLibrary" style="margin:0 auto;">
-        <h4>Framework & Library</h4>
-        <div class="thumbnail round skill"  style="background-image:url('skills/spring.jpeg');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/jquery.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/mybatis.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/Bootstrap.jpg');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/Material.png');"><div class="skill_label">Basic</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/jqgrid.jpeg');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/vue.jpeg');"><div class="skill_label">Basic</div></div>
-      </div><div style="height:20px;"></div>
-      <!-- <div style="both:clear;"></div> -->
-      <div class="version" style="margin:0 auto;">
-        <h4>Version Control</h4>
-        <div class="thumbnail round skill"  style="background-image:url('skills/git.jpeg');"><div class="skill_label">Intermediate</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/SVN.png');"><div class="skill_label">Intermediate</div></div>
-      </div><div style="height:20px;"></div>
-      <!-- <div style="both:clear;"></div> -->
-      <div class="ect" style="margin:0 auto;">
-        <h4>ECT</h4>
-        <div class="thumbnail round skill"  style="background-image:url('skills/ozreport.jpeg');"><div class="skill_label">Basic</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/AmazonAWS.png');"><div class="skill_label">Basic</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/CKEditor.png');"><div class="skill_label">Plain</div></div>
-        <div class="thumbnail round skill"  style="background-image:url('skills/highchart.jpeg');"><div class="skill_label">Plain</div></div>
-      </div>
-      <!-- <div style="both:clear;"></div> -->
-  </section>
-
   <!-- Portfolio -->
   <section class="content-section" id="portfolio">
     <div class="container">
@@ -644,10 +589,66 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
     </div>
   </section>
 
+  <!-- Callout -->
+  <section class="content-section text-white text-center bgBlur" style="overflow:hidden;" id="skillBack" >
+    <div class="content-section-heading" >
+      <h3 class="text-secondary mb-0">My Skill History</h3>
+      <h2 id="skillTitle" class="mb-5" style="color:black;">활용가능 기술모음</h2>
+    </div>
+    <!-- <img src="arrow.png" id="btnSkill"></i> -->
+    <div class="btn-right" id="btnSkill">
+       펼쳐보기<span id="arrow" class="arrow-down"></span>
+    </div>
+    <div id="skillspace" style="height:50px;"></div>
+    <div class="container text-center" id="skillBody">
+      <h4>Language & Platform</h4>
+      <div class="language" style="margin:0 auto;">
+        <div class="thumbnail round skill"  style="background-image:url('skills/htmlcss.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Java.png');"><div class="skill_label">Expert</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/javascript.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/arduino.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jsp.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Android.jpg');"><div class="skill_label">Plain</div></div>
+      </div><div style="height:20px;"></div>
+      <div class="database" style="margin:0 auto;">
+        <h4>Database</h4>
+        <div class="thumbnail round skill"  style="background-image:url('skills/postgresql.jpeg');"><div class="skill_label">Expert</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/oracle.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/sqlite.jpeg');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/mysql.jpeg');"><div class="skill_label">Plain</div></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="frameworkLibrary" style="margin:0 auto;">
+        <h4>Framework & Library</h4>
+        <div class="thumbnail round skill"  style="background-image:url('skills/spring.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jquery.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/mybatis.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Bootstrap.jpg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/Material.png');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/jqgrid.jpeg');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/vue.jpeg');"><div class="skill_label">Basic</div></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="version" style="margin:0 auto;">
+        <h4>Version Control</h4>
+        <div class="thumbnail round skill"  style="background-image:url('skills/git.jpeg');"><div class="skill_label">Intermediate</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/SVN.png');"><div class="skill_label">Intermediate</div></div>
+      </div><div style="height:20px;"></div>
+      <!-- <div style="both:clear;"></div> -->
+      <div class="ect" style="margin:0 auto;">
+        <h4>ECT</h4>
+        <div class="thumbnail round skill"  style="background-image:url('skills/ozreport.jpeg');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/AmazonAWS.png');"><div class="skill_label">Basic</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/CKEditor.png');"><div class="skill_label">Plain</div></div>
+        <div class="thumbnail round skill"  style="background-image:url('skills/highchart.jpeg');"><div class="skill_label">Plain</div></div>
+      </div>
+      <!-- <div style="both:clear;"></div> -->
+  </section>
+
   <!-- Call to Action -->
   <section class="content-section bg-info text-white" id="active">
     <div class="container text-center">
-      <h2 class="mb-4">자격증 & 활동</h2>
+      <h2 class="mb-4" style="text-decoration:underline;">자격증 & 활동</h2>
       <h4>
         <strong>TOEIC : 850</strong> <small>(점수 취득년월 : 2018.02)</small>
       </h4>
@@ -694,7 +695,7 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
       </div>
     </footer>
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top" id="start">
     <i class="fas fa-angle-up"></i>
   </a>
 </body>
