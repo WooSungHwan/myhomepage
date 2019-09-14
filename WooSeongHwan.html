@@ -97,18 +97,19 @@
 #me:hover{
   transition: all 1s ease-in-out;
   transform: scale(1.3,1.3);
+  cursor:pointer;
 }
-#btnSkill{
-  background-color:#A9A9A9;
-  width:100px;
+/* #btnSkill{
   margin:0 auto;
+  color:black;
+  width:300px;
+} */
 
-}
-#btnSkill:hover{
+/* #btnSkill:hover{
   cursor: pointer;
   transform: scale(1.5,1.5);
   transition: transform:scale 0.1s ease-in-out;
-}
+} */
 #skillBack{
   height:380px;
   transition: all 2s ease-in-out;
@@ -116,10 +117,10 @@
 #skillBack h4{
   text-shadow: 0 0 2px black;
 }
-#btnSkill{
+/* #btnSkill{
   position:relative;
   transition: all 2s ease-in-out;
-}
+} */
 /* #btnSkill:hover{
   transition: all 1s ease-in-out;
 
@@ -151,6 +152,9 @@
 #skillBody{
   visibility: hidden;
 }
+#skillTitle{
+  transition: all 2s;
+}
 /* .skill:hover{
   background: #A9A9A9;
   opacity: 0.5;
@@ -158,16 +162,93 @@
 .language, .database, .frameworkLibrary, .version, .ect{
   max-width:100%;
 }
+.btn-right {
+  text-decoration: none;
+  font-family: "Malgun Gothic", "맑은 고딕", dotum, "돋움", sans-serif;
+  position: relative;
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  color: #fff;
+  background-color: #A9A9A9;
+  padding: 0.9em 2.8em 0.9em 2.25em;
+}
+.arrow-up {
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+  border-left: 8px solid transparent;
+  margin-top: 8px;
+  margin-left: 9px;
+  animation: horizontal-up 0.7s ease-in-out infinite;
+}
+@keyframes horizontal-up {
+  0% {
+    margin-top: 5px;
+  }
+  50% {
+    margin-top: 7px;
+  }
+  100% {
+    margin-top: 5px;
+  }
+}
+.arrow-down {
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid white;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid transparent;
+  margin-top: 8px;
+  margin-left: 9px;
+  animation: horizontal-down 0.7s ease-in-out infinite;
+}
 
+@keyframes horizontal-down {
+  0% {
+    margin-top: 9px;
+  }
+  50% {
+    margin-top: 11px;
+  }
+  100% {
+    margin-top: 9px;
+  }
+}
+.btn-right:hover{
+  text-decoration: underline;
+  cursor:pointer;
+}
 </style>
 <script>
 
   var aboutDivWidth;
+  var nowId = 0;
+  var idArr = ['about','interests','skillBack','portfolio','active','contact','page-top'];
   window.onload = function(){
+    meEvent()
     timedelay();
     titleText();
     developerSetting();
     scrollEvent();
+
+
+    function meEvent(){
+      var me = document.getElementById("me");
+      me.addEventListener("click",function(){
+        document.getElementById(idArr[nowId]).scrollIntoView({behavior:'smooth', block:'start'});
+        nowId++;
+        if(nowId == idArr.length) nowId = 0;
+      });
+    }
 
     //skills들 이벤트
     function isMobile() {
@@ -177,34 +258,41 @@
     var skillBtn = document.getElementById("btnSkill");
     var skillBack = document.getElementById("skillBack");
     var skillBody = document.getElementById("skillBody");
-    skillBody.style.visibility = "hidden";
     var isclicktoggle = true;
+
+    skillBody.style.visibility = "hidden";
+    skillBody.style.transition = "all 2s";
+
+
     skillBtn.addEventListener("click",function(){
       var mobileHeight = 1750;
       var webHeight = 1230;
       // var skillBtnPreStyle = this.getAttribute("style");
       var skillspace = document.getElementById("skillspace");
+      var skillTitle = document.getElementById("skillTitle");
       //위에서 클릭
       if(isclicktoggle){ //펼친상태
         isclicktoggle = false;
         if(isMobile()){
-          this.setAttribute("style"," transition: transform:translate 2s ease-in-out; transform:translate(0px, "+(mobileHeight-280)+"px);");
+          this.setAttribute("style"," transition: all 2s ease-in-out; transform:translate(0px, "+(mobileHeight-300)+"px);");
           skillBack.setAttribute("style","height:"+mobileHeight+"px;background-color:#A9A9A9; overflow:hidden;");
         }else{
-          this.setAttribute("style","transition: transform:translate 2s ease-in-out; transform:translate(0px, "+(webHeight-280)+"px);");
+          this.setAttribute("style","transition: all 2s ease-in-out; transform:translate(0px, "+(webHeight-300)+"px);");
           skillBack.setAttribute("style","height:"+webHeight+"px;background-color:#A9A9A9; overflow:hidden;");
         }//skills들 이벤트
         skillspace.style.height=0;//높이조절용
+        skillTitle.style.color="white";
       }else{ //접힌상태
         isclicktoggle = true;
         if(isMobile()){
-          this.setAttribute("style"," transition: transform:translate 2s ease-in-out; transform:translate(0px, 0px);");
+          this.setAttribute("style"," transition: all 2s ease-in-out; transform:translate(0px, 0px);");
           skillBack.setAttribute("style","background-color:white; overflow:hidden;");
         }else{
-          this.setAttribute("style","transition: transform:translate 2s ease-in-out; transform:translate(0px, 0px);");
+          this.setAttribute("style","transition: all 2s ease-in-out; transform:translate(0px, 0px);");
           skillBack.setAttribute("style","background-color:white; overflow:hidden;");
         }//skills들 이벤트
         skillspace.style.height="50px";//높이조절용
+        skillTitle.style.color="black";
       }
 
       //호버 이벤트 넣기
@@ -220,13 +308,26 @@
       //
       //   }
       // }//호버 이벤트 종료
-
-      setTimeout(function(){
-        //2초후의 액션
-        skillBody.setAttribute("stlye","visibility:visible; transition:all 1s;")
-        skillBody.style.visibility = "visible";
-
-      },2000);
+      var arrow = document.getElementById("arrow");
+      if(!isclicktoggle){ //펼칠떄
+        setTimeout(function(){
+          skillBody.style.visibility="visible";
+          //btnSkill.innerHtml='닫기<span id="arrow" class="arrow-up"></span>';
+          btnSkill.childNodes[0].data="닫기";
+          arrow.classList.remove("arrow-down");
+          arrow.classList.add("arrow-up");
+          document.getElementById('skillBack').scrollIntoView({behavior: 'smooth', block: 'center'});
+        },2000);
+      }else{ //접힐때
+        setTimeout(function(){
+          skillBody.style.visibility="hidden";
+          btnSkill.childNodes[0].data="펼쳐보기";
+          arrow.classList.remove("arrow-up");
+          arrow.classList.add("arrow-down");
+          document.getElementById('skillTitle').scrollIntoView({behavior: 'smooth', block: 'center'});
+        },100);
+      }
+      //2초후의 액션
     });
   };
 
@@ -238,10 +339,11 @@
 
   function titleText(){
     var timer = 0;
-    var text = document.getElementById("text")
+    var text = document.getElementById("text");
     var str = 'Developer 우성환(a.k.a. 코딩하는 흑구)의 포트폴리오입니다.';
     var strArray = str.split("");
     var count = 0;
+
     timer = setInterval(function(){
       text.append(strArray[count]);
       count++;
@@ -261,11 +363,11 @@
           if(!developToggleArr[i]){
             developToggleArr[i] = true;
             event.srcElement.parentNode.nextElementSibling.style.opacity=1;
-            this.style.color="blue";
+            event.srcElement.style.color="blue";
           }else{
             developToggleArr[i] = false;
             event.srcElement.parentNode.nextElementSibling.style.opacity=0
-            this.style.color="#A9A9A9";
+            event.srcElement.style.color="#A9A9A9";
           }
         },false);
     }
@@ -309,22 +411,28 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="js-scroll-trigger" href="#page-top">코딩하는 흑구</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#page-top">Main</a>
+        <a class="js-scroll-trigger" href="#page-top">메인화면</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#about">About Me</a>
+        <a class="js-scroll-trigger" href="#about">당신은 어떤 개발자입니까?</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#services">Program</a>
+        <a class="js-scroll-trigger" href="#interests">최근 관심사</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+        <a class="js-scroll-trigger" href="#skillBack">활용 기술 스택</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#contact">Contact</a>
+        <a class="js-scroll-trigger" href="#portfolio">최근 프로젝트</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#active">자격증 & 활동</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#contact">연락바랍니다.</a>
       </li>
     </ul>
   </nav>
@@ -341,10 +449,11 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   </header>
 
   <!-- About Me-->
-  <section class="content-section bg-light" id="about">
+  <section class="content-section bg-light text-center" id="about">
     <div class="aboutDiv">
-      <div style="width: 400px; margin:0 auto; margin-bottom:30px;">
-          <h2>당신은 어떤 개발자인가요?</h2>
+      <div class="content-section-heading">
+          <h3 class="text-secondary mb-0">여기다 뭐라고 쓸까?</h3>
+          <h2 class="mb-5">당신은 어떤 개발자인가요?</h2>
       </div>
       <div class="container text-center ">
         <div class="row">
@@ -362,22 +471,23 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
             <h4 class="developer">공유하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
             <div class="developerBody">
               <img src="golabang_presentation.jpg" alt="gg" class="about" />
-              <p class="lead mb-5">공유의 힘을 믿습니다.! 개발지식을 공유하여 저와 같이 일하는 팀원들의 공유내용을 공유받고 싶고 제가 공유할 수 있는 내용을 팀원들과 공유할 줄 아는 개발자입니다.</p>
+              <p class="lead mb-5">공유의 힘을 믿습니다. 개발지식을 공유하여 저와 같이 일하는 팀원들의 공유내용을 공유받고 싶고 제가 공유할 수 있는 내용을 팀원들과 공유할 줄 아는 개발자입니다.</p>
             </div>
             <h4 class="developer">고민하는 개발자<sup class="click" style="color:#A9A9A9;"> click</sup></h4>
             <div class="developerBody">
               <!-- 고민하는 사진 넣기 -->
-              <p class="lead mb-5">기능구현만 하면 끝이 아닌!! 어떻게 하면 좀더 경제적인 로직이 나오고 어떻게 하면 좀더 좋은 성능을 보일 코드를 고민할 줄 아는 개발자입니다.</p>
+              <p class="lead mb-5">기능구현만 하면 끝이 아닌 어떻게 하면 좀더 경제적인 로직이 나오고 어떻게 하면 좀더 좋은 성능을 보일 코드를 고민할 줄 아는 개발자입니다.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
   <!-- Program -->
-  <section class="content-section bg-primary text-white text-center">
+  <section class="content-section bg-primary text-white text-center" id="interests">
     <div class="content-section-heading" id="serviceTitle">
       <h3 class="text-secondary mb-0">My Interests</h3>
-      <h2 class="mb-5">나의 관심사</h2>
+      <h2 class="mb-5">최근 관심사</h2>
     </div>
     <div class="container" id="services">
       <div class="row">
@@ -386,9 +496,9 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
             <i class="icon-pencil"></i>
           </span>
           <h4>
-            <strong>Filling new content onto my blog</strong>
+            <strong>Filling content onto my blog</strong>
           </h4>
-          <p class="text-faded mb-0">블로그는 개인적인 정리공간뿐만 아니라 Web상에서 오픈된 공간이기 때문에 보다 양질의 컨텐츠로 채우고 제공하여 이로움을 공유하고 싶다. 블로그는 아래 contact에 기재되어 있다.</p>
+          <p class="text-faded mb-0">블로그는 개인적인 정리공간뿐만 아니라 Web상에서 오픈된 공간이기 때문에 보다 양질의 컨텐츠로 채우고 제공하여 이로움을 공유하고 싶다. 블로그는 아래 contact에 기재되어 있습니다.</p>
         </div>
         <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
           <span class="service-icon rounded-circle mx-auto mb-3">
@@ -404,9 +514,9 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
             <i class="icon-like"></i>
           </span>
           <h4>
-            <strong>My Favorite Hobby<br>Soccer</strong>
+            <strong>Java<br>Design Pattern</strong>
           </h4>
-          <p class="text-faded mb-0">군복무시절 다쳤던 몸상태 때문에 그간 즐기지 못했던 My Favorite Sports. 일도 하고 운동도 하며 몸상태를 끌어올려 다시 뛰고 싶습니다.</p>
+          <p class="text-faded mb-0">최근 자바개발 및 공부를 해보면서 몰랐던 자바의 디자인 패턴들을 새롭게 활용하고 더 많은 디자인 패턴들을 경험해보고 적용해보고 싶습니다.</p>
         </div>
         <div class="col-lg-3 col-md-6">
           <span class="service-icon rounded-circle mx-auto mb-3">
@@ -425,9 +535,12 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   <section class="content-section text-white text-center bgBlur" style="overflow:hidden;" id="skillBack" >
     <div class="content-section-heading" >
       <h3 class="text-secondary mb-0">My Skill History</h3>
-      <h2 class="mb-5">활용가능 기술모음</h2>
+      <h2 id="skillTitle" class="mb-5" style="color:black;">활용가능 기술모음</h2>
     </div>
-    <div class="thumbnail circle" id="btnSkill"></div>
+    <!-- <img src="arrow.png" id="btnSkill"></i> -->
+    <div class="btn-right" id="btnSkill">
+		   펼쳐보기<span id="arrow" class="arrow-down"></span>
+ 	  </div>
     <div id="skillspace" style="height:50px;"></div>
     <div class="container text-center" id="skillBody">
       <h4>Language & Platform</h4>
@@ -478,8 +591,8 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   <section class="content-section" id="portfolio">
     <div class="container">
       <div class="content-section-heading text-center">
-        <h3 class="text-secondary mb-0">Portfolio</h3>
-        <h2 class="mb-5">Recent Projects</h2>
+        <h3 class="text-secondary mb-0">Recent Projects</h3>
+        <h2 class="mb-5">최근 프로젝트</h2>
       </div>
       <!-- 골라방 -->
       <div class="row no-gutters">
@@ -491,40 +604,40 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
                 <p class="mb-0">부동산, 자취방 중고거래 서비스</p>
               </span>
             </span>
-            <img class="img-fluid" src="golabang_main.png" alt="">
+            <img class="img-fluid" src="img/골라방_프로젝트.png" alt="">
           </a>
         </div>
         <div class="col-lg-6">
-          <a class="portfolio-item" href="#">
+          <a class="portfolio-item" href="https://github.com/3mstory/3ms">
             <span class="caption">
               <span class="caption-content">
-                <h2>Ice Cream</h2>
-                <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+                <h2>3분썰</h2>
+                <p class="mb-0">인피니티 스크롤! Onepage 반응형 트렌디 커뮤니티</p>
               </span>
             </span>
-            <img class="img-fluid" src="img/portfolio-2.jpg" alt="">
+            <img class="img-fluid" src="img/3분썰_프로젝트.png" alt="">
           </a>
         </div>
         <div class="col-lg-6">
-          <a class="portfolio-item" href="#">
+          <a class="portfolio-item" href="https://github.com/WooSungHwan/neosseullaeng">
             <span class="caption">
               <span class="caption-content">
-                <h2>Strawberries</h2>
-                <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+                <h2>너쓸랭</h2>
+                <p class="mb-0">경매방식의 중고거래 사이트</p>
               </span>
             </span>
-            <img class="img-fluid" src="img/portfolio-3.jpg" alt="">
+            <img class="img-fluid" src="img/너쓸랭_프로젝트.png" alt="">
           </a>
         </div>
         <div class="col-lg-6">
-          <a class="portfolio-item" href="#">
+          <a class="portfolio-item" href="아두이노를 이용한 자전거 기울기 방향등.pptx">
             <span class="caption">
               <span class="caption-content">
-                <h2>Workspace</h2>
-                <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+                <h2>자전거 기울기 방향안내등</h2>
+                <p class="mb-0">Riding Item, 자전거의 기울기, 방향에 따라 방향안내를 받습니다.(feat, 브레이크등)</p>
               </span>
             </span>
-            <img class="img-fluid" src="img/portfolio-4.jpg" alt="">
+            <img class="img-fluid" src="img/자전거_프로젝트.png" alt="">
           </a>
         </div>
       </div>
@@ -532,10 +645,29 @@ style="background-image:url('selfcamera.jpg'); float:left;position:fixed;top:5px
   </section>
 
   <!-- Call to Action -->
-  <section class="content-section bg-info text-white">
+  <section class="content-section bg-info text-white" id="active">
     <div class="container text-center">
-      <h2 class="mb-4">자격증</h2>
-
+      <h2 class="mb-4">자격증 & 활동</h2>
+      <h4>
+        <strong>TOEIC : 850</strong> <small>(점수 취득년월 : 2018.02)</small>
+      </h4>
+      <p class="text-faded mb-0">영어로된 소스를 읽을 충분한 준비가 되다.</p><br>
+      <h4>
+        <strong>정보처리기사</strong> <small>(취득년월 : 2018.05)</small>
+      </h4>
+      <p class="text-faded mb-0">IT 업계에서의 일할 준비가 되다.</p><br>
+      <h4>
+        <strong>쌍용교육센터(강남)</strong> <small>(활동년월 : 2018.07 ~ 2019.01)</small>
+      </h4>
+      <p class="text-faded mb-0">개발자로써의 업무 능력을 준비하다.</p><br>
+      <h4>
+        <strong>코딩하는 흑구, 블로그 시작</strong> <small>(활동년월 : 2019.02 ~ 현재)</small>
+      </h4>
+      <p class="text-faded mb-0">배웠던 지식을 정리하고 공유하기 위한 나만의 공간을 준비하다.</p><br>
+      <h4>
+        <strong>SQL Developer</strong> <small>(취득년월 : 2019.06)</small>
+      </h4>
+      <p class="text-faded mb-0">Database에 대한 개발자 수준의 지식을 충분히 준비하다.</p>
     </div>
   </section>
 
