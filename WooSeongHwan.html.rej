@@ -1,0 +1,9 @@
+diff a/WooSeongHwan.html b/WooSeongHwan.html	(rejected hunks)
+@@ -379,6 +379,7 @@
+       <div class="version" style="margin:0 auto;">
+         <h4>Version Control</h4>
+         <div class="thumbnail round skill" style="background-image:url('skills/git.jpeg');"></div>
++        <div class="thumbnail round skill" style="background-image:url('skills/SVN.png');"></div>
+       </div><div style="height:20px;"></div>
+       <!-- <div style="both:clear;"></div> -->
+       <div class="ect" style="margin:0 auto;">
